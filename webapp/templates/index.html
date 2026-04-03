@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Placement Readiness Analysis System{% endblock %}
+
+{% block content %}
+<div class="text-center mb-12">
+    <h1 class="text-4xl font-bold text-gray-800 mb-3">Placement Readiness Analysis System</h1>
+    <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+        Comprehensive tools to assess placement readiness, analyze placement data with ML models, and generate synthetic datasets.
+    </p>
+</div>
+
+<div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+    <!-- Readiness Checker -->
+    <a href="/readiness" class="block bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow p-8 border-t-4 border-indigo-500">
+        <div class="text-indigo-500 mb-4">
+            <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+        </div>
+        <h2 class="text-xl font-bold text-gray-800 mb-2">Readiness Checker</h2>
+        <p class="text-gray-600 text-sm">Interactive questionnaire across 5 sections - get a personalized readiness score, strengths/weaknesses analysis, and career suggestions.</p>
+        <div class="mt-4 text-indigo-500 font-semibold text-sm">Start Assessment &rarr;</div>
+    </a>
+
+    <!-- ML Analysis -->
+    <a href="/analysis" class="block bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow p-8 border-t-4 border-emerald-500">
+        <div class="text-emerald-500 mb-4">
+            <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+            </svg>
+        </div>
+        <h2 class="text-xl font-bold text-gray-800 mb-2">ML Analysis</h2>
+        <p class="text-gray-600 text-sm">Run 9 ML models across 7 phases - generates 20 charts, classification/regression metrics, and a comprehensive PDF report.</p>
+        <div class="mt-4 text-emerald-500 font-semibold text-sm">Run Analysis &rarr;</div>
+    </a>
+
+    <!-- Data Generator -->
+    <a href="/generator" class="block bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow p-8 border-t-4 border-amber-500">
+        <div class="text-amber-500 mb-4">
+            <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"/>
+            </svg>
+        </div>
+        <h2 class="text-xl font-bold text-gray-800 mb-2">Data Generator</h2>
+        <p class="text-gray-600 text-sm">Generate synthetic placement datasets with realistic correlations. Customize record count and seed, preview data, and download Excel.</p>
+        <div class="mt-4 text-amber-500 font-semibold text-sm">Generate Data &rarr;</div>
+    </a>
+</div>
+{% endblock %}

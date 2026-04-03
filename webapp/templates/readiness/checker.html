@@ -1,0 +1,298 @@
+{% extends "base.html" %}
+{% block title %}Placement Readiness Checker{% endblock %}
+{% block content %}
+<div class="max-w-4xl mx-auto">
+    <h1 class="text-3xl font-bold text-gray-800 mb-2">Placement Readiness Checker</h1>
+    <p class="text-gray-600 mb-8">Answer questions across 5 sections to get your personalized readiness analysis.</p>
+
+    <!-- Progress Bar -->
+    <div id="wizard-progress" class="mb-8">
+        <div class="flex justify-between mb-2">
+            <span class="step-label text-sm font-medium text-indigo-600" data-step="1">1. Academic</span>
+            <span class="step-label text-sm font-medium text-gray-400" data-step="2">2. Technical</span>
+            <span class="step-label text-sm font-medium text-gray-400" data-step="3">3. Projects</span>
+            <span class="step-label text-sm font-medium text-gray-400" data-step="4">4. Soft Skills</span>
+            <span class="step-label text-sm font-medium text-gray-400" data-step="5">5. Career</span>
+        </div>
+        <div class="w-full bg-gray-200 rounded-full h-2">
+            <div id="progress-bar" class="bg-indigo-600 h-2 rounded-full transition-all duration-300" style="width:20%"></div>
+        </div>
+    </div>
+
+    <!-- Form -->
+    <form id="readiness-form" class="bg-white rounded-xl shadow-lg p-8">
+        <!-- Step 1: Academic -->
+        <div class="wizard-step" data-step="1">
+            <h2 class="text-xl font-bold text-gray-700 mb-6">Academic Information</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                    <input type="text" name="name" required class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Degree Branch</label>
+                    <select name="branch" required class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-indigo-500">
+                        <option value="">Select...</option>
+                        <option>Computer Science</option>
+                        <option>Information Technology</option>
+                        <option>Electronics/E&TC</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Current Status</label>
+                    <select name="year" required class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-indigo-500">
+                        <option value="">Select...</option>
+                        <option>3rd Year</option>
+                        <option>4th Year</option>
+                        <option>Graduate (Unplaced)</option>
+                        <option>Placed Graduate</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">CGPA (out of 10)</label>
+                    <input type="number" name="cgpa" min="0" max="10" step="0.01" required class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-indigo-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">12th Percentage</label>
+                    <input type="number" name="pct_12" min="0" max="100" step="0.01" required class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-indigo-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">10th Percentage</label>
+                    <input type="number" name="pct_10" min="0" max="100" step="0.01" required class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-indigo-500">
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 2: Technical -->
+        <div class="wizard-step hidden" data-step="2">
+            <h2 class="text-xl font-bold text-gray-700 mb-6">Technical Skills</h2>
+            <div class="space-y-6">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">DSA Knowledge (1-5)</label>
+                    <div class="flex space-x-4">
+                        <label class="flex items-center" title="Beginner"><input type="radio" name="dsa" value="1" required class="mr-1"> 1</label>
+                        <label class="flex items-center" title="Basic"><input type="radio" name="dsa" value="2" class="mr-1"> 2</label>
+                        <label class="flex items-center" title="Intermediate"><input type="radio" name="dsa" value="3" class="mr-1"> 3</label>
+                        <label class="flex items-center" title="Good"><input type="radio" name="dsa" value="4" class="mr-1"> 4</label>
+                        <label class="flex items-center" title="Expert"><input type="radio" name="dsa" value="5" class="mr-1"> 5</label>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">OOPS Understanding (1-5)</label>
+                    <div class="flex space-x-4">
+                        <label class="flex items-center"><input type="radio" name="oops" value="1" required class="mr-1"> 1</label>
+                        <label class="flex items-center"><input type="radio" name="oops" value="2" class="mr-1"> 2</label>
+                        <label class="flex items-center"><input type="radio" name="oops" value="3" class="mr-1"> 3</label>
+                        <label class="flex items-center"><input type="radio" name="oops" value="4" class="mr-1"> 4</label>
+                        <label class="flex items-center"><input type="radio" name="oops" value="5" class="mr-1"> 5</label>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Coding Problems Solved</label>
+                    <select name="coding_solved" required class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-indigo-500">
+                        <option value="">Select...</option>
+                        <option>0-50</option>
+                        <option>50-200</option>
+                        <option>200-500</option>
+                        <option>500+</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Programming Languages Known</label>
+                    <div class="flex flex-wrap gap-4">
+                        <label class="flex items-center"><input type="checkbox" name="lang" value="C" class="mr-1"> C</label>
+                        <label class="flex items-center"><input type="checkbox" name="lang" value="C++" class="mr-1"> C++</label>
+                        <label class="flex items-center"><input type="checkbox" name="lang" value="Java" class="mr-1"> Java</label>
+                        <label class="flex items-center"><input type="checkbox" name="lang" value="Python" class="mr-1"> Python</label>
+                        <label class="flex items-center"><input type="checkbox" name="lang" value="JavaScript" class="mr-1"> JavaScript</label>
+                        <label class="flex items-center"><input type="checkbox" name="lang" value="C#" class="mr-1"> C#</label>
+                    </div>
+                </div>
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Backend Technology</label>
+                        <input type="text" name="backend" placeholder="e.g., Django, Node.js, None" required class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-indigo-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Frontend Technology</label>
+                        <input type="text" name="frontend" placeholder="e.g., React, Angular, HTML/CSS" required class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-indigo-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Database Knowledge</label>
+                        <input type="text" name="database" placeholder="e.g., MySQL, MongoDB, None" required class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-indigo-500">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">System Design Knowledge</label>
+                    <select name="system_design" required class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-indigo-500">
+                        <option value="">Select...</option>
+                        <option>None</option>
+                        <option>Basic</option>
+                        <option>Intermediate</option>
+                        <option>Advanced</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 3: Projects -->
+        <div class="wizard-step hidden" data-step="3">
+            <h2 class="text-xl font-bold text-gray-700 mb-6">Projects & Experience</h2>
+            <div class="space-y-6">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Built a Full-Stack Project?</label>
+                    <div class="flex space-x-6">
+                        <label class="flex items-center"><input type="radio" name="fullstack_project" value="Yes" required class="mr-2"> Yes</label>
+                        <label class="flex items-center"><input type="radio" name="fullstack_project" value="No" class="mr-2"> No</label>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Technical Projects Completed</label>
+                    <select name="projects" required class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-indigo-500">
+                        <option value="">Select...</option>
+                        <option>0</option>
+                        <option>1-2</option>
+                        <option>3-5</option>
+                        <option>5+</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Internship Experience</label>
+                    <select name="internship" required class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-indigo-500">
+                        <option value="">Select...</option>
+                        <option>No Internship</option>
+                        <option>1 Internship</option>
+                        <option>2+ Internships</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Open Source Contributions?</label>
+                    <div class="flex space-x-6">
+                        <label class="flex items-center"><input type="radio" name="opensource" value="Yes" required class="mr-2"> Yes</label>
+                        <label class="flex items-center"><input type="radio" name="opensource" value="No" class="mr-2"> No</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 4: Soft Skills -->
+        <div class="wizard-step hidden" data-step="4">
+            <h2 class="text-xl font-bold text-gray-700 mb-6">Soft Skills & Interview Readiness</h2>
+            <div class="space-y-6">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Communication Skills: <span id="comm-val" class="text-indigo-600 font-bold">3</span>/5</label>
+                    <input type="range" name="communication" min="1" max="5" value="3" class="w-full accent-indigo-600" oninput="document.getElementById('comm-val').textContent=this.value">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">English Fluency: <span id="eng-val" class="text-indigo-600 font-bold">3</span>/5</label>
+                    <input type="range" name="english" min="1" max="5" value="3" class="w-full accent-indigo-600" oninput="document.getElementById('eng-val').textContent=this.value">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Interview Confidence: <span id="conf-val" class="text-indigo-600 font-bold">3</span>/5</label>
+                    <input type="range" name="confidence" min="1" max="5" value="3" class="w-full accent-indigo-600" oninput="document.getElementById('conf-val').textContent=this.value">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Attended Mock Interviews?</label>
+                    <div class="flex space-x-6">
+                        <label class="flex items-center"><input type="radio" name="mock_interviews" value="Yes" required class="mr-2"> Yes</label>
+                        <label class="flex items-center"><input type="radio" name="mock_interviews" value="No" class="mr-2"> No</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 5: Career -->
+        <div class="wizard-step hidden" data-step="5">
+            <h2 class="text-xl font-bold text-gray-700 mb-6">Career Goals</h2>
+            <div class="space-y-6">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Expected Salary Package (LPA)</label>
+                    <input type="number" name="expected_salary" min="0" step="0.5" required class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-indigo-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Actively Applying for IT Jobs?</label>
+                    <div class="flex space-x-6">
+                        <label class="flex items-center"><input type="radio" name="applying" value="Yes" required class="mr-2"> Yes</label>
+                        <label class="flex items-center"><input type="radio" name="applying" value="No" class="mr-2"> No</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="flex justify-between mt-8 pt-6 border-t">
+            <button type="button" id="btn-prev" class="hidden px-6 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 font-medium transition">Previous</button>
+            <div class="ml-auto flex space-x-3">
+                <button type="button" id="btn-next" class="px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 font-medium transition">Next</button>
+                <button type="submit" id="btn-submit" class="hidden px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium transition">
+                    <span id="submit-text">Get My Report</span>
+                    <span id="submit-loader" class="hidden"><div class="loader inline-block w-5 h-5 border-2"></div></span>
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <!-- Results -->
+    <div id="results-section" class="hidden mt-10 space-y-8">
+        <!-- Overall Score -->
+        <div class="bg-white rounded-xl shadow-lg p-8 text-center">
+            <h2 class="text-2xl font-bold text-gray-700 mb-4">Your Placement Readiness Report</h2>
+            <div class="flex justify-center mb-6">
+                <div class="relative w-40 h-40">
+                    <canvas id="score-gauge"></canvas>
+                    <div class="absolute inset-0 flex items-center justify-center flex-col">
+                        <span id="score-number" class="text-3xl font-bold"></span>
+                        <span class="text-sm text-gray-500">out of 100</span>
+                    </div>
+                </div>
+            </div>
+            <div id="prediction-badge" class="inline-block px-6 py-2 rounded-full text-white font-bold text-lg mb-3"></div>
+            <p id="salary-range" class="text-gray-600 text-lg"></p>
+            <div class="mt-4">
+                <button id="btn-download-pdf" class="px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 font-medium transition">Download PDF Report</button>
+            </div>
+        </div>
+
+        <!-- Category Scores Chart -->
+        <div class="bg-white rounded-xl shadow-lg p-8">
+            <h3 class="text-xl font-bold text-gray-700 mb-4">Category-wise Breakdown</h3>
+            <div style="max-width:600px; margin:auto;"><canvas id="category-chart"></canvas></div>
+        </div>
+
+        <!-- Strengths & Weaknesses -->
+        <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <h3 class="text-lg font-bold text-green-600 mb-4">Strengths</h3>
+                <ul id="strengths-list" class="space-y-2"></ul>
+            </div>
+            <div class="bg-white rounded-xl shadow-lg p-6">
+                <h3 class="text-lg font-bold text-red-500 mb-4">Areas of Concern</h3>
+                <ul id="weaknesses-list" class="space-y-2"></ul>
+            </div>
+        </div>
+
+        <!-- Suggestions -->
+        <div class="bg-white rounded-xl shadow-lg p-8">
+            <h3 class="text-xl font-bold text-gray-700 mb-4">Personalized Suggestions</h3>
+            <div id="suggestions-list" class="space-y-3"></div>
+        </div>
+
+        <!-- Dataset Comparison -->
+        <div class="bg-white rounded-xl shadow-lg p-8">
+            <h3 class="text-xl font-bold text-gray-700 mb-4">How You Compare (vs Dataset)</h3>
+            <div style="max-width:600px; margin:auto;"><canvas id="comparison-chart"></canvas></div>
+        </div>
+
+        <!-- Priorities -->
+        <div class="bg-yellow-50 border border-yellow-200 rounded-xl p-6">
+            <h3 class="text-lg font-bold text-yellow-800 mb-3">Top 3 Priority Actions</h3>
+            <ol id="priorities-list" class="list-decimal list-inside space-y-2 text-yellow-900 font-medium"></ol>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/readiness-wizard.js"></script>
+{% endblock %}

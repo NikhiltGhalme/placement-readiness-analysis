@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %}Data Generator{% endblock %}
+{% block content %}
+<div class="max-w-4xl mx-auto">
+    <h1 class="text-3xl font-bold text-gray-800 mb-2">Synthetic Data Generator</h1>
+    <p class="text-gray-600 mb-8">Generate realistic placement datasets with correlated features.</p>
+
+    <!-- Form -->
+    <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+        <div class="grid md:grid-cols-2 gap-6 mb-6">
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Number of Records</label>
+                <input type="number" id="n-records" value="1000" min="100" max="10000" step="100" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-amber-500 focus:border-amber-500">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Random Seed</label>
+                <input type="number" id="seed" value="42" min="0" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-amber-500 focus:border-amber-500">
+            </div>
+        </div>
+        <button id="btn-generate" class="px-8 py-3 bg-amber-500 text-white rounded-lg hover:bg-amber-600 font-bold text-lg transition">
+            <span id="gen-text">Generate Dataset</span>
+            <span id="gen-loader" class="hidden"><div class="loader inline-block w-5 h-5 border-2"></div> Generating...</span>
+        </button>
+    </div>
+
+    <!-- Results -->
+    <div id="gen-results" class="hidden space-y-6">
+        <!-- Summary -->
+        <div class="bg-white rounded-xl shadow-lg p-8">
+            <h3 class="text-xl font-bold text-gray-700 mb-4">Dataset Summary</h3>
+            <div class="grid md:grid-cols-3 gap-4 mb-6">
+                <div class="bg-amber-50 rounded-lg p-4 text-center">
+                    <div id="total-count" class="text-3xl font-bold text-amber-600"></div>
+                    <div class="text-sm text-gray-500">Total Records</div>
+                </div>
+                <div class="bg-green-50 rounded-lg p-4 text-center">
+                    <div id="placed-count" class="text-3xl font-bold text-green-600"></div>
+                    <div class="text-sm text-gray-500">Placed</div>
+                </div>
+                <div class="bg-red-50 rounded-lg p-4 text-center">
+                    <div id="unplaced-count" class="text-3xl font-bold text-red-500"></div>
+                    <div class="text-sm text-gray-500">Unplaced</div>
+                </div>
+            </div>
+            <h4 class="font-bold text-gray-600 mb-2">Branch Distribution</h4>
+            <div id="branch-dist" class="grid md:grid-cols-4 gap-2 mb-6"></div>
+            <button id="btn-download" class="px-6 py-2 bg-amber-500 text-white rounded-lg hover:bg-amber-600 font-medium transition">
+                Download Excel File
+            </button>
+        </div>
+
+        <!-- Preview Table -->
+        <div class="bg-white rounded-xl shadow-lg p-8 overflow-x-auto">
+            <h3 class="text-xl font-bold text-gray-700 mb-4">Data Preview (First 10 rows)</h3>
+            <table id="preview-table" class="w-full text-xs border-collapse">
+                <thead></thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/generator.js"></script>
+{% endblock %}
