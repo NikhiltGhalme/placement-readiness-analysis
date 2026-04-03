@@ -125,14 +125,9 @@ The readiness score is a weighted composite:
 - **Downloadable PDF reports** (individual readiness + full ML analysis)
 - **Downloadable Excel datasets** (generated synthetic data)
 
-## Authors
+## Author
 
 - Nikhil Ghalme
-- Abhijit Bhujbal
-- Saurabh Gawali
-
-**S.Y M.Sc. (Comp. Sci) — Sem IV, Academic Year 2025-26**
-Indira College of Commerce and Science
 
 ## License
 
